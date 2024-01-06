@@ -3,6 +3,7 @@ import Userform from "./Userfrom";
 import UserTable from "./UsersTable";
 import Axios from "axios";
 import { useEffect, useState } from "react";
+import './Users.css';
 
 const Users = ()=>{
     const [users, setUsers] = useState([]);
@@ -76,6 +77,7 @@ const Users = ()=>{
                 width:'calc(100% - 100px)',
                 margin:'auto',
                 marginTop: '100px',
+                backgroundColor:'yellow'
             }}
         >
             <Userform 
@@ -94,7 +96,6 @@ const Users = ()=>{
                 deleteUser={data=>window.confirm('Are you sure?') && deleteUser(data)}
             />
         </Box>
-        
     );
 }
 export default Users;

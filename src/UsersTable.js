@@ -1,4 +1,6 @@
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 const UserTable =({rows, selectedUser, deleteUser})=>{
     return(
@@ -22,13 +24,13 @@ const UserTable =({rows, selectedUser, deleteUser})=>{
                                     sx={{margin: '0px 10px'}}
                                     onClick={()=>selectedUser({id:row.id, name:row.name})}
                                 >
-                                    Update
+                                    <EditIcon/>
                                 </Button>
                                 <Button
                                     sx={{margin: '0px 10px'}}
                                     onClick={()=>deleteUser({id:row.id})}
                                 >
-                                    Delete
+                                    <DeleteIcon/>
                                 </Button>
                             </TableCell>
                         </TableRow>
