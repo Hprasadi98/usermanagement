@@ -4,6 +4,7 @@ import UserTable from "./UsersTable";
 import Axios from "axios";
 import { useEffect, useState } from "react";
 import './Users.css';
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 const Users = ()=>{
     const [users, setUsers] = useState([]);
@@ -16,7 +17,7 @@ const Users = ()=>{
     }, []);
 
     const getUsers =()=>{
-        Axios.get('http://localhost:3000/api/users')
+        Axios.get(`${backendUrl}/api/users`)
             .then(response =>{
                 setUsers(response?.data?.response || []);
             })
@@ -31,7 +32,7 @@ const Users = ()=>{
             id: data.id,
             name: data.name,
         }
-        Axios.post('http://localhost:3000/api/createuser', payload)
+        Axios.post(`${backendUrl}/api/createuser`, payload)
             .then(() =>{
                 getUsers();
                 setSubmitted(false);
@@ -49,7 +50,7 @@ const Users = ()=>{
             id:data.id,
             name:data.name,
         }
-        Axios.post('http://localhost:3000/api/updateuser', payload)
+        Axios.post(`${backendUrl}/api/updateuser`, payload)
             .then(() =>{
                 getUsers();
                 setSubmitted(false);
@@ -62,7 +63,7 @@ const Users = ()=>{
 
     const deleteUser =(data)=>{
 
-        Axios.post('http://localhost:3000/api/deleteuser',data)
+        Axios.post(`${backendUrl}/api/deleteuser`,data)
             .then(() =>{
                 getUsers();
             })
