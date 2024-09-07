@@ -4,7 +4,7 @@ import UserTable from "./UsersTable";
 import Axios from "axios";
 import { useEffect, useState } from "react";
 import './Users.css';
-const backendUrl = process.env.REACT_APP_BACKEND_URL;
+// const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const Users = ()=>{
     const [users, setUsers] = useState([]);
@@ -17,8 +17,10 @@ const Users = ()=>{
     }, []);
 
     const getUsers =()=>{
-        Axios.get(`${backendUrl}/users`)
+        // Axios.get(`${backendUrl}/users`)
+        Axios.get("http://localhost:3000/api/users")
             .then(response =>{
+                console.log(response);
                 setUsers(response?.data?.response || []);
             })
             .catch(error =>{
@@ -32,7 +34,7 @@ const Users = ()=>{
             id: data.id,
             name: data.name,
         }
-        Axios.post(`${backendUrl}/createuser`, payload)
+        Axios.post("http://localhost:3000/api/createuser", payload)
             .then(() =>{
                 getUsers();
                 setSubmitted(false);
@@ -50,7 +52,7 @@ const Users = ()=>{
             id:data.id,
             name:data.name,
         }
-        Axios.post(`${backendUrl}/updateuser`, payload)
+        Axios.post("http://localhost:3000/api/updateuser", payload)
             .then(() =>{
                 getUsers();
                 setSubmitted(false);
@@ -63,7 +65,7 @@ const Users = ()=>{
 
     const deleteUser =(data)=>{
 
-        Axios.post(`${backendUrl}/deleteuser`,data)
+        Axios.post("http://localhost:3000/api/deleteuser",data)
             .then(() =>{
                 getUsers();
             })
